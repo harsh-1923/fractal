@@ -2,7 +2,6 @@
 import CraftHeader from "@/components/ui/CraftHeader";
 import React from "react";
 import "./hold-to-delete.css";
-import Image from "next/image";
 
 const HoldToDelete = () => {
   return (
