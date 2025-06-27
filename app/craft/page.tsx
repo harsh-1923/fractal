@@ -10,8 +10,8 @@ const crafts = [
     date: "June 25",
   },
   {
-    title: "Hold to delete",
-    href: "/craft/hold-to-delete",
+    title: "Index Island",
+    href: "/craft/index-island",
     date: "June 25",
   },
   {
