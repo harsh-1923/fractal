@@ -1,11 +1,10 @@
 "use client";
 import CraftHeader from "@/components/ui/CraftHeader";
-import React, { useState } from "react";
+import React from "react";
 import "./hold-to-delete.css";
 import Image from "next/image";
 
 const page = () => {
-  const [slowedDown, setSlowedDown] = useState(false);
   return (
     <div className="p-4 pt-20 max-w-3xl mx-auto bg-[var(--background)] min-h-screen">
       <CraftHeader header="Hold to delete" date="June 25" />
