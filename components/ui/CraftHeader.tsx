@@ -20,10 +20,10 @@ const CraftHeader = ({ header, date }: CraftHeaderProps) => {
         <p className="text-sm text-gray-400 leading-[20px]">{date}</p>
       </div>
       <button
-        className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-800"
+        className="w-8 h-8 rounded-full flex items-center justify-center bg-[var(--colors-gray3)] shadow-[0_0_0_1px_var(--colors-grayA6)] hover:bg-[var(--colors-gray4)] focus:ring-1 focus:ring-[var(--colors-focus)]"
         onClick={() => navigator.clipboard.writeText(window.location.href)}
       >
-        <Link className="w-4 h-4 text-gray-300 rotate-45" />
+        <Link size={14} className="text-[var(--colors-gray11)] rotate-45" />
       </button>
     </div>
   );
