@@ -8,7 +8,7 @@
 
 .hold-overlay {
   clip-path: inset(0px 100% 0px 0px);
-  transition: clip-path 0.2s ease-out;
+  transition: clip-path var(--hold-to-delete-transition-duration) ease-out;
 }
 
 .hold-to-delete-button:active .hold-overlay {
