@@ -1,6 +1,7 @@
 "use client";
-import { Link } from "lucide-react";
-import React from "react";
+import { Check, Link } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import React, { useState } from "react";
 
 type CraftHeaderProps = {
   header: string;
@@ -21,13 +22,55 @@ const CraftHeader = ({ header, date }: CraftHeaderProps) => {
           {date}
         </p>
       </div>
-      <button
-        className="w-8 h-8 rounded-full flex items-center justify-center bg-[var(--colors-gray3)] shadow-[0_0_0_1px_var(--colors-grayA6)] hover:bg-[var(--colors-gray4)] focus:ring-1 focus:ring-[var(--colors-focus)]"
-        onClick={() => navigator.clipboard.writeText(window.location.href)}
-      >
-        <Link size={14} className="text-[var(--colors-gray11)] rotate-45" />
-      </button>
+      <CraftLinkButton />
     </div>
+  );
+};
+
+const CraftLinkButton = () => {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleClick = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 3000);
+  };
+
+  return (
+    <button
+      className="w-8 h-8 rounded-full flex items-center justify-center bg-[var(--colors-gray1)] hover:bg-[var(--colors-gray2)] dark:bg-[var(--colors-gray3)] outline-none border-none focus-visible:ring-2 focus-visible:ring-[var(--colors-focus)] focus-visible:ring-offset-0 active:ring-0 active:outline-none"
+      onClick={handleClick}
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        {isCopied ? (
+          <motion.div
+            key="copied"
+            initial={{ opacity: 0, scale: 0.5, filter: "blur(4px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.5, filter: "blur(4px)" }}
+            transition={{ duration: 0.1 }}
+          >
+            <Check
+              size={14}
+              className="text-[var(--colors-teal11)]"
+              strokeWidth={3}
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="link"
+            initial={{ opacity: 0, scale: 0.5, filter: "blur(4px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.5, filter: "blur(4px)" }}
+            transition={{ duration: 0.1 }}
+          >
+            <Link size={14} className="text-[var(--colors-gray11)] rotate-45" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </button>
   );
 };
 
