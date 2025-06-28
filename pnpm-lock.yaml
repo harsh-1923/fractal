@@ -38,6 +38,9 @@ dependencies:
   react-use-measure:
     specifier: ^2.1.7
     version: 2.1.7(react-dom@19.1.0)(react@19.1.0)
+  sugar-high:
+    specifier: ^0.9.3
+    version: 0.9.3
 
 devDependencies:
   '@eslint/eslintrc':
@@ -4155,6 +4158,10 @@ packages:
     dependencies:
       client-only: 0.0.1
       react: 19.1.0
+    dev: false
+
+  /sugar-high@0.9.3:
+    resolution: {integrity: sha512-sjJH8J76D1dRMU3QINnsYr1wfQyXbyEVQQvdgzJvIer6mkgM8ahB9fNrb+FDWzRKsLuITiBOR0ZbbhDZDUbqjg==}
     dev: false
 
   /supports-color@7.2.0:

@@ -9,11 +9,16 @@ const crafts = [
     href: "/craft/hold-to-delete",
     date: "June 25",
   },
+  {
+    title: "Safari Toolbar",
+    href: "/craft/safari-toolbar",
+    date: "June 28",
+  },
 ];
 
 const page = () => {
   return (
-    <div className="p-4 pt-20 max-w-3xl mx-auto bg-[var(--background)] min-h-screen">
+    <div className="">
       <motion.h2
         className="text-xl font-bold pb-5"
         initial={{ opacity: 0, y: -20 }}

@@ -15,7 +15,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Harsh Sharma",
+  metadataBase: new URL("https://imharsh.com"),
+  alternates: {
+    canonical: "/",
+  },
+  title: {
+    default: "Harsh Sharma",
+    template: "%s | Harsh Sharma",
+  },
   description: "Design Engineer",
 };
 

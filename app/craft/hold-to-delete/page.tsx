@@ -5,7 +5,7 @@ import "./hold-to-delete.css";
 
 const HoldToDelete = () => {
   return (
-    <div className="p-4 pt-20 max-w-3xl mx-auto bg-[var(--background)] min-h-screen">
+    <div className="">
       <CraftHeader header="Hold to delete" date="June 25" />
       <div
         className="flex items-center justify-center w-full h-80 rounded-md relative overflow-hidden bg-[var(--colors-gray1)] border border-[var(--colors-gray6)] bg-cover"
