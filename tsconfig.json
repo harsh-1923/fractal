@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/craft/mdx/page.mdx"
-  ],
+, "app/craft/glyph-inspector/page.mdx"  ],
   "exclude": ["node_modules"]
 }

@@ -250,10 +250,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-html {
-  min-width: 360px;
-  scrollbar-gutter: stable;
-}
 
 body {
   text-rendering: optimizeLegibility;

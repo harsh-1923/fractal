@@ -2,6 +2,7 @@
 import CraftHeader from "@/components/ui/CraftHeader";
 import React from "react";
 import "./hold-to-delete.css";
+import CraftFooter from "@/components/ui/CraftFooter";
 
 const HoldToDelete = () => {
   return (
@@ -35,6 +36,10 @@ const HoldToDelete = () => {
           </span>
         </button>
       </div>
+      <CraftFooter
+        prev={{ title: "Glyph Inspector", link: "/craft/glyph-inspector" }}
+        next={{ title: "Hold to delete", link: "/craft/hold-to-delete" }}
+      />
     </div>
   );
 };

@@ -14,6 +14,11 @@ const crafts = [
     href: "/craft/safari-toolbar",
     date: "June 28",
   },
+  {
+    title: "Glyph Inspector",
+    href: "/craft/glyph-inspector",
+    date: "June 28",
+  },
 ];
 
 const page = () => {
