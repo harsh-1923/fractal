@@ -9,21 +9,6 @@ const crafts = [
     href: "/craft/hold-to-delete",
     date: "June 25",
   },
-  {
-    title: "Index Island",
-    href: "/craft/index-island",
-    date: "June 25",
-  },
-  {
-    title: "Hold to delete",
-    href: "/craft/hold-to-delete",
-    date: "June 25",
-  },
-  {
-    title: "Hold to delete",
-    href: "/craft/hold-to-delete",
-    date: "June 25",
-  },
 ];
 
 const page = () => {
