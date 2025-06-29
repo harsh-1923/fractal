@@ -13,7 +13,15 @@ const CraftHeader = ({ header, date }: CraftHeaderProps) => {
   const router = useRouter();
 
   const handleBackClick = () => {
-    router.back();
+    const referrer = document.referrer;
+    const currentOrigin = window.location.origin;
+    
+    // Check if referrer exists and is from the same origin (our app)
+    if (referrer && referrer.startsWith(currentOrigin)) {
+      router.back();
+    } else {
+      router.push("/craft");
+    }
   };
 
   return (

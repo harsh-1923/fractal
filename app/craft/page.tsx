@@ -14,6 +14,11 @@ const crafts = [
     href: "/craft/glyph-inspector",
     date: "June 28",
   },
+  {
+    title: "Tabs 1",
+    href: "/craft/tabs-1",
+    date: "June 29",
+  },
 ];
 
 const page = () => {
