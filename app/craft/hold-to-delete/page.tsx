@@ -37,8 +37,8 @@ const HoldToDelete = () => {
         </button>
       </div>
       <CraftFooter
-        prev={{ title: "Glyph Inspector", link: "/craft/glyph-inspector" }}
-        next={{ title: "Hold to delete", link: "/craft/hold-to-delete" }}
+        next={{ title: "Glyph Inspector", link: "/craft/glyph-inspector" }}
+      
       />
     </div>
   );

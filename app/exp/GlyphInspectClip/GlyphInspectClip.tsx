@@ -4,6 +4,7 @@ import React from "react";
 const GlyphInspectClip = () => {
   const [pos, setPos] = React.useState({ x: 0, y: 0 });
   const [componentRect, setComponentRect] = React.useState({ left: 0, top: 0 });
+  const [isSmallScreen, setIsSmallScreen] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -18,16 +19,21 @@ const GlyphInspectClip = () => {
       }
     };
 
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768); // md breakpoint
+      updateComponentRect();
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("resize", updateComponentRect);
+    window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", updateComponentRect);
 
-    // Initial position update
-    updateComponentRect();
+    // Initial setup
+    handleResize();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", updateComponentRect);
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", updateComponentRect);
     };
   }, []);
@@ -38,7 +44,7 @@ const GlyphInspectClip = () => {
 
   // Create a circular clip path around the mouse position
   const clipPathId = "circular-clip";
-  const circleRadius = 160; // Adjust this value to change the size of the cutout
+  const circleRadius = isSmallScreen ? 80 : 160; // Responsive circle size
 
   return (
     <div
@@ -64,7 +70,6 @@ const GlyphInspectClip = () => {
           overflow: "hidden",
         }}
         aria-hidden="true"
-        
       >
         <defs>
           <clipPath id={clipPathId}>

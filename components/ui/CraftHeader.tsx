@@ -14,7 +14,7 @@ const CraftHeader = ({ header, date }: CraftHeaderProps) => {
       <div>
         <h1
           aria-label={`${header} - Published on ${date}`}
-          className="text-[16px] font-medium leading-relaxed font-semibold"
+          className="text-[16px] font-medium leading-relaxed"
         >
           {header}
         </h1>

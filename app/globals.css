@@ -281,7 +281,7 @@ pre {
 }
 
 code {
-  font-family: "Menlo", "Monaco", "Courier New", monospace;
+  font-family: var(--font-geist-mono), "Menlo", "Monaco", "Courier New", monospace;
   font-size: 14px;
   padding: 0.2em 0.4em;
   border-radius: 0.3em;
@@ -307,7 +307,7 @@ code:not(pre code) span {
 
 @media (prefers-color-scheme: dark) {
   code {
-    font-family: "Menlo", "Monaco", "Courier New", monospace;
+    font-family: var(--font-geist-mono), "Menlo", "Monaco", "Courier New", monospace;
     font-size: 14px;
     padding: 0.2em 0.4em;
     border-radius: 0.3em;
@@ -321,4 +321,17 @@ code:not(pre code) span {
 
 pre code span {
   font-weight: 500;
+}
+
+*  {
+  scrollbar-width: thin;
+  scrollbar-color: var(--colors-gray6) var(--background);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--background);
 }

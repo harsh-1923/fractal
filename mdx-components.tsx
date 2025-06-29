@@ -9,25 +9,107 @@ type ListItemProps = ComponentPropsWithoutRef<"li">;
 type AnchorProps = ComponentPropsWithoutRef<"a">;
 type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
+// Helper function to generate anchor ID from heading text
+const generateAnchorId = (children: React.ReactNode): string => {
+  const text = React.Children.toArray(children)
+    .map(child => {
+      if (typeof child === 'string') return child;
+      if (typeof child === 'number') return child.toString();
+      return '';
+    })
+    .join(' ');
+  
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+};
+
 const components = {
-  h1: (props: HeadingProps) => (
-    <h1 className="font-medium pt-12 mb-0" {...props} />
-  ),
-  h2: (props: HeadingProps) => (
-    <h2
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3"
-      {...props}
-    />
-  ),
-  h3: (props: HeadingProps) => (
-    <h3
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3"
-      {...props}
-    />
-  ),
-  h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
+  h1: (props: HeadingProps) => {
+    const anchorId = generateAnchorId(props.children);
+    return (
+      <h1
+        className="font-medium pt-12 mb-0 group"
+        {...props}
+        data-heading
+        id={anchorId}
+      >
+        <a
+          href={`#${anchorId}`}
+          className="no-underline hover:underline text-gray-800 dark:text-zinc-200 opacity-0 group-hover:opacity-100 transition-opacity ml-2"
+          aria-label={`Link to ${
+            typeof props.children === "string" ? props.children : "section"
+          }`}
+        >
+          #
+        </a>
+        {props.children}
+      </h1>
+    );
+  },
+  h2: (props: HeadingProps) => {
+    const anchorId = generateAnchorId(props.children);
+    return (
+      <h2
+        className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3 group"
+        {...props}
+        id={anchorId}
+      >
+        <a
+          href={`#${anchorId}`}
+          className="no-underline hover:underline text-gray-800 dark:text-zinc-200 opacity-0 group-hover:opacity-100 transition-opacity mr-2"
+          aria-label={`Link to ${
+            typeof props.children === "string" ? props.children : "section"
+          }`}
+        >
+          #
+        </a>
+        {props.children}
+      </h2>
+    );
+  },
+  h3: (props: HeadingProps) => {
+    const anchorId = generateAnchorId(props.children);
+    return (
+      <h3
+        className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3 group"
+        data-subheading
+        {...props}
+        id={anchorId}
+      >
+        <a
+          href={`#${anchorId}`}
+          className="no-underline hover:underline text-gray-800 dark:text-zinc-200 opacity-0 group-hover:opacity-100 transition-opacity mr-2"
+          aria-label={`Link to ${
+            typeof props.children === "string" ? props.children : "section"
+          }`}
+        >
+          #
+        </a>
+        {props.children}
+      </h3>
+    );
+  },
+  h4: (props: HeadingProps) => {
+    const anchorId = generateAnchorId(props.children);
+    return (
+      <h4 className="font-medium group" {...props} id={anchorId}>
+        <a
+          href={`#${anchorId}`}
+          className="no-underline hover:underline text-gray-800 dark:text-zinc-200 opacity-0 group-hover:opacity-100 transition-opacity mr-2"
+          aria-label={`Link to ${
+            typeof props.children === "string" ? props.children : "section"
+          }`}
+        >
+          #
+        </a>
+        {props.children}
+      </h4>
+    );
+  },
   p: (props: ParagraphProps) => (
     <p className="text-gray-800 dark:text-zinc-300 leading-snug" {...props} />
+  ),
+  hr: (props: ComponentPropsWithoutRef<"hr">) => (
+    <hr className="border-[var(--colors-gray6)] my-10" {...props} />
   ),
   ol: (props: ListProps) => (
     <ol
@@ -79,7 +161,13 @@ const components = {
   },
   code: ({ children, ...props }: ComponentPropsWithoutRef<"code">) => {
     const codeHTML = highlight(children as string);
-    return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+    return (
+      <code
+        className="text-sm"
+        dangerouslySetInnerHTML={{ __html: codeHTML }}
+        {...props}
+      />
+    );
   },
   Table: ({ data }: { data: { headers: string[]; rows: string[][] } }) => (
     <table>
