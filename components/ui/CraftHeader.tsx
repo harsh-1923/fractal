@@ -1,7 +1,8 @@
 "use client";
-import { Check, Link } from "lucide-react";
+import { Check, Link, Undo2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type CraftHeaderProps = {
   header: string;
@@ -9,20 +10,37 @@ type CraftHeaderProps = {
 };
 
 const CraftHeader = ({ header, date }: CraftHeaderProps) => {
+  const router = useRouter();
+
+  const handleBackClick = () => {
+    router.back();
+  };
+
   return (
-    <div className="flex gap-3 items-center justify-between mb-8">
-      <div>
-        <h1
-          aria-label={`${header} - Published on ${date}`}
-          className="text-[16px] font-medium leading-relaxed"
+    <div className="space-y-8 mb-8">
+      <div className="flex items-center justify-between w-full gap-3">
+        <button
+          aria-label="Back"
+          onClick={handleBackClick}
+          className="w-8 h-8 rounded-full flex items-center justify-center bg-[var(--colors-gray1)] hover:bg-[var(--colors-gray2)] dark:bg-[var(--colors-gray3)] outline-none border-none focus-visible:ring-2 focus-visible:ring-[var(--colors-focus)] focus-visible:ring-offset-0 active:ring-0 active:outline-none"
         >
-          {header}
-        </h1>
-        <p className="text-sm text-[var(--colors-gray11)] leading-[20px]">
-          {date}
-        </p>
+          <Undo2 size={16} className="text-[var(--colors-gray11)]" />
+        </button>
       </div>
-      <CraftLinkButton />
+      <div className="flex gap-3 items-center justify-between w-full">
+        <div>
+          <h1
+            aria-label={`${header} - Published on ${date}`}
+            className="text-[16px] font-medium leading-relaxed"
+          >
+            {header}
+          </h1>
+          <p className="text-sm text-[var(--colors-gray11)] leading-[20px]">
+            {date}
+          </p>
+        </div>
+        <CraftLinkButton />
+      </div>
     </div>
   );
 };
