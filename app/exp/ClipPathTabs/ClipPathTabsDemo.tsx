@@ -16,7 +16,7 @@ const ClipPathTabsDemo = () => {
         <svg
           width="16px"
           height="16px"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           viewBox="0 0 24 24"
           fill="none"
           className="transition-colors duration-150"

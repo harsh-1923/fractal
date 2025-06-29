@@ -11,27 +11,42 @@ type ClipPathTabsProps = {
   slowed?: boolean;
 };
 
+const getTabsInView = (tabsLength: number) => {
+  if (typeof window === "undefined") {
+    // Default to 2 tabs during SSR
+    return Math.min(2, tabsLength);
+  }
+
+  if (window.innerWidth > 768) {
+    return tabsLength;
+  } else if (window.innerWidth > 480) {
+    return Math.min(3, tabsLength);
+  } else {
+    return Math.min(2, tabsLength);
+  }
+};
+
 const ClipPathTabs = ({ tabs = TABS, slowed = false }: ClipPathTabsProps) => {
-  const [tabsInView, setTabsInView] = React.useState<number>(tabs.length);
+  const [tabsInView, setTabsInView] = React.useState<number>(() =>
+    getTabsInView(tabs.length)
+  );
   const [activeTab, setActiveTab] = React.useState(tabs[0].name);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const activeTabElementRef = React.useRef<HTMLButtonElement>(null);
 
-  React.useEffect(() => {
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 768) {
-        setTabsInView(tabs.length);
-      } else if (window.innerWidth > 480) {
-        setTabsInView(3);
-      } else {
-        setTabsInView(2);
-      }
-    });
-
-    return () => {
-      window.removeEventListener("resize", () => {});
-    };
+  const initLength = React.useCallback(() => {
+    setTabsInView(getTabsInView(tabs.length));
   }, [tabs.length]);
+
+  React.useEffect(() => {
+    // Only add event listener if we're in the browser
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", initLength);
+      return () => {
+        window.removeEventListener("resize", initLength);
+      };
+    }
+  }, [initLength]);
 
   React.useEffect(() => {
     const container = containerRef.current;
