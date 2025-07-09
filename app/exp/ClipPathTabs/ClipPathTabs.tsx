@@ -9,6 +9,8 @@ type ClipPathTabsProps = {
     slot: React.ReactNode;
   }[];
   slowed?: boolean;
+  onTabClick?: (tab: string) => void;
+  tabColor?: string;
 };
 
 const getTabsInView = (tabsLength: number) => {
@@ -26,7 +28,12 @@ const getTabsInView = (tabsLength: number) => {
   }
 };
 
-const ClipPathTabs = ({ tabs = TABS, slowed = false }: ClipPathTabsProps) => {
+const ClipPathTabs = ({
+  tabs = TABS,
+  slowed = false,
+  onTabClick,
+  tabColor = "#ff4d00",
+}: ClipPathTabsProps) => {
   const [tabsInView, setTabsInView] = React.useState<number>(() =>
     getTabsInView(tabs.length)
   );
@@ -69,8 +76,8 @@ const ClipPathTabs = ({ tabs = TABS, slowed = false }: ClipPathTabsProps) => {
   }, [activeTab, activeTabElementRef, containerRef, tabsInView]);
 
   return (
-    <div className="relative flex flex-col items-center w-fit mx-auto">
-      <ul className="relative flex w-full justify-center gap-2">
+    <div className="relative flex flex-col w-full mx-auto">
+      <ul className="relative flex w-full gap-2">
         {tabs.slice(0, tabsInView).map((tab) => (
           <li key={tab.name}>
             <button
@@ -78,6 +85,7 @@ const ClipPathTabs = ({ tabs = TABS, slowed = false }: ClipPathTabsProps) => {
               data-tab={tab.name}
               onClick={() => {
                 setActiveTab(tab.name);
+                onTabClick?.(tab.name);
               }}
               className="flex h-[34px] items-center gap-2 rounded-[17px] p-4 text-sm font-medium text-black no-underline"
             >
@@ -96,13 +104,14 @@ const ClipPathTabs = ({ tabs = TABS, slowed = false }: ClipPathTabsProps) => {
         )}
         ref={containerRef}
       >
-        <ul className="relative flex w-full justify-center gap-2 bg-[#ff4d00]">
+        <ul className="relative flex w-full gap-2" style={{ backgroundColor: tabColor }}>
           {tabs.slice(0, tabsInView).map((tab) => (
             <li key={tab.name}>
               <button
                 data-tab={tab.name}
                 onClick={() => {
                   setActiveTab(tab.name);
+                  onTabClick?.(tab.name);
                 }}
                 className="flex h-[34px] items-center gap-2 rounded-full p-4 text-sm font-medium text-white no-underline"
                 tabIndex={-1}

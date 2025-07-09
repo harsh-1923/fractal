@@ -1,0 +1,27 @@
+import CraftHeader from "@/components/ui/CraftHeader";
+import GlyphInspectClip from "@/app/exp/GlyphInspectClip/GlyphInspectClip";
+import CraftFooter from "@/components/ui/CraftFooter";  
+import DemoArea from "@/components/ui/DemoArea";
+import XyneChatbox from "@/app/exp/XyneChatbox/XyneChatbox";
+
+export const metadata = {
+  title: "Xyne Chat",
+  description: "Xyne Chat",
+  alternates: {
+    canonical: "/craft/xyne-chat",
+  },
+};
+
+<CraftHeader header="Xyne Chat" date="July 9" />
+
+
+<DemoArea preferedTheme="light" className="relative min-h-[400px]">
+    <XyneChatbox />
+</DemoArea>
+
+<CraftFooter
+  prev={{
+    title: "Hold to delete",
+    link: "/craft/hold-to-delete",
+  }}
+/>

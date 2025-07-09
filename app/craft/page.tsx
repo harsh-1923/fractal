@@ -19,6 +19,11 @@ const crafts = [
     href: "/craft/tabs-1",
     date: "June 29",
   },
+  {
+    title: "XYNE Chat",
+    href: "/craft/xyne-chat",
+    date: "July 9",
+  },
 ];
 
 const page = () => {

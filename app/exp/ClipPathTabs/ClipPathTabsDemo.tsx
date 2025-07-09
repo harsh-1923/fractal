@@ -45,7 +45,9 @@ const ClipPathTabsDemo = () => {
           ></path>
         </svg>
       </button>
-      <ClipPathTabs slowed={slowed} />
+      <div className="w-fit mx-auto flex items-center justify-center">
+        <ClipPathTabs slowed={slowed} />
+      </div>
     </DemoArea>
   );
 };
