@@ -3,21 +3,14 @@ import React from "react";
 
 import ClipPathTabs from "../ClipPathTabs/ClipPathTabs";
 import {
-  ArrowBigUp,
-  FileSliders,
   Globe,
-  Paperclip,
   Plus,
   Search,
   Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-type XyneChatboxProps = {
-  slowed?: boolean;
-};
-
-const XyneChatbox = ({ slowed = false }: XyneChatboxProps) => {
+const XyneChatbox = () => {
   const [selectedTab, setSelectedTab] = React.useState("Ask AI");
 
   const handleTabClick = (tab: string) => {
